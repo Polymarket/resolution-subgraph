@@ -1,0 +1,63 @@
+type ExampleEntity @entity {
+  id: Bytes!
+  count: BigInt!
+  questionID: Bytes! # bytes32
+  owner: Bytes! # address
+}
+type DisputePrice @entity(immutable: true) {
+  id: Bytes!
+  requester: Bytes! # address
+  proposer: Bytes! # address
+  disputer: Bytes! # address
+  identifier: Bytes! # bytes32
+  timestamp: BigInt! # uint256
+  ancillaryData: Bytes! # bytes
+  proposedPrice: BigInt! # int256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ProposePrice @entity(immutable: true) {
+  id: Bytes!
+  requester: Bytes! # address
+  proposer: Bytes! # address
+  identifier: Bytes! # bytes32
+  timestamp: BigInt! # uint256
+  ancillaryData: Bytes! # bytes
+  proposedPrice: BigInt! # int256
+  expirationTimestamp: BigInt! # uint256
+  currency: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RequestPrice @entity(immutable: true) {
+  id: Bytes!
+  requester: Bytes! # address
+  identifier: Bytes! # bytes32
+  timestamp: BigInt! # uint256
+  ancillaryData: Bytes! # bytes
+  currency: Bytes! # address
+  reward: BigInt! # uint256
+  finalFee: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Settle @entity(immutable: true) {
+  id: Bytes!
+  requester: Bytes! # address
+  proposer: Bytes! # address
+  disputer: Bytes! # address
+  identifier: Bytes! # bytes32
+  timestamp: BigInt! # uint256
+  ancillaryData: Bytes! # bytes
+  price: BigInt! # int256
+  payout: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
