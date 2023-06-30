@@ -1,90 +1,49 @@
 import {
   DisputePrice as DisputePriceEvent,
   ProposePrice as ProposePriceEvent,
-  RequestPrice as RequestPriceEvent,
-  Settle as SettleEvent
-} from "../generated/OptimisticOracleV2/OptimisticOracleV2"
-import {
-  DisputePrice,
-  ProposePrice,
-  RequestPrice,
-  Settle
-} from "../generated/schema"
+} from "../generated/OptimisticOracleV2/OptimisticOracleV2";
+import { MarketResolution } from "../generated/schema";
+import { UMA_CTF_ADDRESS } from "./utils/constants";
+import { crypto, Address } from "@graphprotocol/graph-ts";
 
 export function handleDisputePrice(event: DisputePriceEvent): void {
-  let entity = new DisputePrice(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.requester = event.params.requester
-  entity.proposer = event.params.proposer
-  entity.disputer = event.params.disputer
-  entity.identifier = event.params.identifier
-  entity.timestamp = event.params.timestamp
-  entity.ancillaryData = event.params.ancillaryData
-  entity.proposedPrice = event.params.proposedPrice
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
+  let entity = MarketResolution.load(
+    crypto.keccak256(event.params.ancillaryData).toHexString()
+  ) as MarketResolution;
+  // make sure from UMA CTF adapter
+  if (event.params.requester != Address.fromHexString(UMA_CTF_ADDRESS)) {
+    return;
+  }
+  if (entity.status == "proposed") {
+    // first challenge
+    entity.status = "challenged";
+    entity.lastUpdateTimestamp = event.params.timestamp;
+  } else if (entity.status == "reproposed") {
+    // second or further challenges
+    entity.status = "disputed";
+    entity.lastUpdateTimestamp = event.params.timestamp;
+  }
+  entity.save();
 }
 
 export function handleProposePrice(event: ProposePriceEvent): void {
-  let entity = new ProposePrice(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.requester = event.params.requester
-  entity.proposer = event.params.proposer
-  entity.identifier = event.params.identifier
-  entity.timestamp = event.params.timestamp
-  entity.ancillaryData = event.params.ancillaryData
-  entity.proposedPrice = event.params.proposedPrice
-  entity.expirationTimestamp = event.params.expirationTimestamp
-  entity.currency = event.params.currency
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleRequestPrice(event: RequestPriceEvent): void {
-  let entity = new RequestPrice(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.requester = event.params.requester
-  entity.identifier = event.params.identifier
-  entity.timestamp = event.params.timestamp
-  entity.ancillaryData = event.params.ancillaryData
-  entity.currency = event.params.currency
-  entity.reward = event.params.reward
-  entity.finalFee = event.params.finalFee
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleSettle(event: SettleEvent): void {
-  let entity = new Settle(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.requester = event.params.requester
-  entity.proposer = event.params.proposer
-  entity.disputer = event.params.disputer
-  entity.identifier = event.params.identifier
-  entity.timestamp = event.params.timestamp
-  entity.ancillaryData = event.params.ancillaryData
-  entity.price = event.params.price
-  entity.payout = event.params.payout
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
+  let entity = MarketResolution.load(
+    crypto.keccak256(event.params.ancillaryData).toHexString()
+  ) as MarketResolution;
+  // make sure from UMA CTF adapter
+  if (event.params.requester != Address.fromHexString(UMA_CTF_ADDRESS)) {
+    return;
+  }
+  if (entity.status == "posed") {
+    // first proposal
+    entity.status = "proposed";
+    entity.proposedPrice = event.params.proposedPrice;
+    entity.lastUpdateTimestamp = event.params.timestamp;
+  } else if (entity.status == "challenged") {
+    // second or further proposals
+    entity.status = "reproposed";
+    entity.reproposedPrice = event.params.proposedPrice;
+    entity.lastUpdateTimestamp = event.params.timestamp;
+  }
+  entity.save();
 }
