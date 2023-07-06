@@ -8,47 +8,26 @@ dataSources:
     source:
       address: "0x6A9D222616C90FcA5754cd1333cFD9b7fb6a4F74"
       abi: UmaCtfAdapter
-      startBlock: 34876144
+      startBlock: 35203539
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - AncillaryDataUpdated
-        - NewAdmin
-        - QuestionEmergencyResolved
-        - QuestionFlagged
-        - QuestionInitialized
-        - QuestionPaused
-        - QuestionReset
-        - QuestionResolved
-        - QuestionUnpaused
-        - RemovedAdmin
+        - MarketResolution
       abis:
         - name: UmaCtfAdapter
           file: ./abis/UmaCtfAdapter.json
       eventHandlers:
         - event: AncillaryDataUpdated(indexed bytes32,indexed address,bytes)
           handler: handleAncillaryDataUpdated
-        - event: NewAdmin(indexed address,indexed address)
-          handler: handleNewAdmin
-        - event: QuestionEmergencyResolved(indexed bytes32,uint256[])
-          handler: handleQuestionEmergencyResolved
-        - event: QuestionFlagged(indexed bytes32)
-          handler: handleQuestionFlagged
         - event: QuestionInitialized(indexed bytes32,indexed uint256,indexed
             address,bytes,address,uint256,uint256)
           handler: handleQuestionInitialized
-        - event: QuestionPaused(indexed bytes32)
-          handler: handleQuestionPaused
         - event: QuestionReset(indexed bytes32)
           handler: handleQuestionReset
         - event: QuestionResolved(indexed bytes32,indexed int256,uint256[])
           handler: handleQuestionResolved
-        - event: QuestionUnpaused(indexed bytes32)
-          handler: handleQuestionUnpaused
-        - event: RemovedAdmin(indexed address,indexed address)
-          handler: handleRemovedAdmin
       file: ./src/uma-ctf-adapter.ts
   - kind: ethereum
     name: OptimisticOracleV2
@@ -56,15 +35,13 @@ dataSources:
     source:
       address: "0xeE3Afe347D5C74317041E2618C49534dAf887c24"
       abi: OptimisticOracleV2
+      startBlock: 35203539
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - DisputePrice
-        - ProposePrice
-        - RequestPrice
-        - Settle
+        - MarketResolution
       abis:
         - name: OptimisticOracleV2
           file: ./abis/OptimisticOracleV2.json
@@ -75,9 +52,4 @@ dataSources:
         - event: ProposePrice(indexed address,indexed
             address,bytes32,uint256,bytes,int256,uint256,address)
           handler: handleProposePrice
-        - event: RequestPrice(indexed address,bytes32,uint256,bytes,address,uint256,uint256)
-          handler: handleRequestPrice
-        - event: Settle(indexed address,indexed address,indexed
-            address,bytes32,uint256,bytes,int256,uint256)
-          handler: handleSettle
       file: ./src/optimistic-oracle-v-2.ts

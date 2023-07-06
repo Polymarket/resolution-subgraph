@@ -1,4 +1,4 @@
-import { BigInt, Address } from "@graphprotocol/graph-ts";
+import { BigInt, Address, log } from "@graphprotocol/graph-ts";
 import {
   QuestionInitialized,
   QuestionReset,
@@ -8,20 +8,23 @@ import {
 import { MarketResolution } from "../generated/schema";
 
 export function handleQuestionInitialized(event: QuestionInitialized): void {
-  let entity = new MarketResolution(event.params.questionID.toString());
+  log.info("initialize question {}", [event.params.questionID.toHexString()]);
+  let entity = new MarketResolution(event.params.questionID.toHexString());
   entity.author = event.params.creator;
   entity.ancillaryData = event.params.ancillaryData;
   entity.lastUpdateTimestamp = event.params.requestTimestamp;
   entity.status = "posed";
-  entity.proposedPrice = new BigInt(3); // we use 3 as the unproposed price
-  entity.reproposedPrice = new BigInt(3);
-  entity.price = new BigInt(3);
+  entity.proposedPrice = BigInt.fromI32(69); // we use 3 as the unproposed price
+  entity.reproposedPrice = BigInt.fromI32(69);
+  entity.price = BigInt.fromI32(69);
   entity.updates = "";
+  entity.save();
 }
 
 export function handleQuestionReset(event: QuestionReset): void {
+  log.info("reset question {}", [event.params.questionID.toHexString()]);
   let entity = MarketResolution.load(
-    event.params.questionID.toString()
+    event.params.questionID.toHexString()
   ) as MarketResolution;
 
   if (entity.status == "disputed") {
@@ -29,24 +32,30 @@ export function handleQuestionReset(event: QuestionReset): void {
     entity.status = "challenged";
     entity.lastUpdateTimestamp = event.block.timestamp;
     entity.proposedPrice = entity.reproposedPrice;
-    entity.reproposedPrice = new BigInt(3);
+    entity.reproposedPrice = BigInt.fromI32(69);
+    entity.save();
   }
 }
 
 export function handleQuestionResolved(event: QuestionResolved): void {
+  log.info("resolve question {}", [event.params.questionID.toHexString()]);
   let entity = MarketResolution.load(
-    event.params.questionID.toString()
+    event.params.questionID.toHexString()
   ) as MarketResolution;
+
+  // TODO: add checks on status?
 
   // mark as resolve and set price
   entity.status = "resolved";
   entity.lastUpdateTimestamp = event.block.timestamp;
   entity.price = event.params.settledPrice;
+  entity.save();
 }
 
 export function handleAncillaryDataUpdated(event: AncillaryDataUpdated): void {
+  log.info("update question {}", [event.params.questionID.toHexString()]);
   let entity = MarketResolution.load(
-    event.params.questionID.toString()
+    event.params.questionID.toHexString()
   ) as MarketResolution;
 
   if (event.params.owner != Address.fromBytes(entity.author)) {
@@ -56,4 +65,5 @@ export function handleAncillaryDataUpdated(event: AncillaryDataUpdated): void {
 
   // add string delimited update
   entity.updates = entity.updates.concat("," + event.params.update.toString());
+  entity.save();
 }

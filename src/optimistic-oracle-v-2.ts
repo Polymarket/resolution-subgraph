@@ -9,7 +9,11 @@ import { crypto, Address } from "@graphprotocol/graph-ts";
 export function handleDisputePrice(event: DisputePriceEvent): void {
   let entity = MarketResolution.load(
     crypto.keccak256(event.params.ancillaryData).toHexString()
-  ) as MarketResolution;
+  );
+  if (entity == null) {
+    // might not be a polymarket request
+    return;
+  }
   // make sure from UMA CTF adapter
   if (event.params.requester != Address.fromHexString(UMA_CTF_ADDRESS)) {
     return;
@@ -29,7 +33,11 @@ export function handleDisputePrice(event: DisputePriceEvent): void {
 export function handleProposePrice(event: ProposePriceEvent): void {
   let entity = MarketResolution.load(
     crypto.keccak256(event.params.ancillaryData).toHexString()
-  ) as MarketResolution;
+  );
+  if (entity == null) {
+    // might not be a polymarket request
+    return;
+  }
   // make sure from UMA CTF adapter
   if (event.params.requester != Address.fromHexString(UMA_CTF_ADDRESS)) {
     return;
