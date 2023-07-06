@@ -14,6 +14,7 @@ export function handleQuestionInitialized(event: QuestionInitialized): void {
   entity.ancillaryData = event.params.ancillaryData;
   entity.lastUpdateTimestamp = event.params.requestTimestamp;
   entity.status = "posed";
+  entity.wasDisputed = false;
   entity.proposedPrice = BigInt.fromI32(69); // we use 3 as the unproposed price
   entity.reproposedPrice = BigInt.fromI32(69);
   entity.price = BigInt.fromI32(69);
@@ -30,7 +31,6 @@ export function handleQuestionReset(event: QuestionReset): void {
   if (entity.status == "disputed") {
     // too early after dispute case essentially throw away initial proposal
     entity.status = "challenged";
-    entity.wasDisputed = false;
     entity.lastUpdateTimestamp = event.block.timestamp;
     entity.proposedPrice = entity.reproposedPrice;
     entity.reproposedPrice = BigInt.fromI32(69);
