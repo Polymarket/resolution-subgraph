@@ -25,6 +25,7 @@ export function handleDisputePrice(event: DisputePriceEvent): void {
   } else if (entity.status == "reproposed") {
     // second or further challenges
     entity.status = "disputed";
+    entity.wasDisputed = true;
     entity.lastUpdateTimestamp = event.params.timestamp;
   }
   entity.save();

@@ -30,6 +30,7 @@ export function handleQuestionReset(event: QuestionReset): void {
   if (entity.status == "disputed") {
     // too early after dispute case essentially throw away initial proposal
     entity.status = "challenged";
+    entity.wasDisputed = false;
     entity.lastUpdateTimestamp = event.block.timestamp;
     entity.proposedPrice = entity.reproposedPrice;
     entity.reproposedPrice = BigInt.fromI32(69);

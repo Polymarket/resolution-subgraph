@@ -4,6 +4,7 @@ type MarketResolution @entity {
   ancillaryData: Bytes! # bytes
   lastUpdateTimestamp: BigInt! # uint256
   status: String! # posed/proposed/challenged/reproposed/disputed/resolved
+  wasDisputed: Boolean! # bool
   proposedPrice: BigInt! # int256
   reproposedPrice: BigInt! # int256
   price: BigInt! # int256

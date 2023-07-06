@@ -106,6 +106,19 @@ export class MarketResolution extends Entity {
     this.set("status", Value.fromString(value));
   }
 
+  get wasDisputed(): boolean {
+    let value = this.get("wasDisputed");
+    if (!value || value.kind == ValueKind.NULL) {
+      return false;
+    } else {
+      return value.toBoolean();
+    }
+  }
+
+  set wasDisputed(value: boolean) {
+    this.set("wasDisputed", Value.fromBoolean(value));
+  }
+
   get proposedPrice(): BigInt {
     let value = this.get("proposedPrice");
     if (!value || value.kind == ValueKind.NULL) {
