@@ -66,7 +66,10 @@ export function handleAncillaryDataUpdated(event: AncillaryDataUpdated): void {
 
   // add string delimited update
   entity.updates = entity.updates.concat(
-    "," + event.block.timestamp.toString() + event.params.update.toHexString()
+    "," +
+      event.block.timestamp.toString() +
+      "-" +
+      event.params.update.toHexString()
   );
   entity.save();
 }
