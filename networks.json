@@ -7,6 +7,14 @@
     "OptimisticOracleV2": {
       "address": "0xeE3Afe347D5C74317041E2618C49534dAf887c24",
       "startBlock": 35203539
+    },
+    "UmaCtfAdapterOld": {
+      "address": "0xCB1822859cEF82Cd2Eb4E6276C7916e692995130",
+      "startBlock": 23569780
+    },
+    "OptimisticOracleOld": {
+      "address": "0xBb1A8db2D4350976a11cdfA60A1d43f97710Da49",
+      "startBlock": 23569780
     }
   }
 }

@@ -1,12 +1,20 @@
 type MarketResolution @entity {
   id: String! # questionID
+  newVersionQ: Boolean! # bool
   author: Bytes! # address
   ancillaryData: Bytes! # bytes
   lastUpdateTimestamp: BigInt! # uint256
-  status: String! # posed/proposed/challenged/reproposed/disputed/resolved
+  status: String! # initialized/posed/proposed/challenged/reproposed/disputed/resolved
   wasDisputed: Boolean! # bool
   proposedPrice: BigInt! # int256
   reproposedPrice: BigInt! # int256
   price: BigInt! # int256
   updates: String! # comma separated updates
+  transactionHash: String # txHash
+  logIndex: BigInt # uint256
+}
+
+type AncillaryDataHashToQuestionId @entity {
+  id: String! # ancillaryDataHash
+  questionId: String! # questionID
 }

@@ -52,4 +52,58 @@ dataSources:
         - event: ProposePrice(indexed address,indexed
             address,bytes32,uint256,bytes,int256,uint256,address)
           handler: handleProposePrice
+        - event: RequestPrice(indexed address,bytes32,uint256,bytes,address,uint256,uint256)
+          handler: handleRequestPrice
       file: ./src/optimistic-oracle-v-2.ts
+  - kind: ethereum
+    name: UmaCtfAdapterOld
+    network: matic
+    source:
+      address: "0xCB1822859cEF82Cd2Eb4E6276C7916e692995130"
+      abi: UmaCtfAdapterOld
+      startBlock: 23569780
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MarketResolution
+      abis:
+        - name: UmaCtfAdapterOld
+          file: ./abis/UmaCtfAdapterOld.json
+      eventHandlers:
+        - event: QuestionInitialized(indexed bytes32,bytes,uint256,address,uint256,uint256,bool)
+          handler: handleQuestionInitialized
+        - event: QuestionReset(indexed bytes32)
+          handler: handleQuestionReset
+        - event: QuestionResolved(indexed bytes32,indexed bool)
+          handler: handleQuestionResolved
+        - event: QuestionSettled(indexed bytes32,indexed int256,indexed bool)
+          handler: handleQuestionSettled
+      file: ./src/uma-ctf-adapter-old.ts
+  - kind: ethereum
+    name: OptimisticOracleOld
+    network: matic
+    source:
+      address: "0xBb1A8db2D4350976a11cdfA60A1d43f97710Da49"
+      abi: OptimisticOracleOld
+      startBlock: 23569780
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MarketResolution
+      abis:
+        - name: OptimisticOracleOld
+          file: ./abis/OptimisticOracleOld.json
+      eventHandlers:
+        - event: DisputePrice(indexed address,indexed address,indexed
+            address,bytes32,uint256,bytes,int256)
+          handler: handleDisputePrice
+        - event: ProposePrice(indexed address,indexed
+            address,bytes32,uint256,bytes,int256,uint256,address)
+          handler: handleProposePrice
+        - event: RequestPrice(indexed address,bytes32,uint256,bytes,address,uint256,uint256)
+          handler: handleRequestPrice
+      file: ./src/optimistic-oracle-old.ts

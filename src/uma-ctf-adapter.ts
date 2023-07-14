@@ -10,12 +10,13 @@ import { MarketResolution } from "../generated/schema";
 export function handleQuestionInitialized(event: QuestionInitialized): void {
   log.info("initialize question {}", [event.params.questionID.toHexString()]);
   let entity = new MarketResolution(event.params.questionID.toHexString());
+  entity.newVersionQ = true;
   entity.author = event.params.creator;
   entity.ancillaryData = event.params.ancillaryData;
   entity.lastUpdateTimestamp = event.params.requestTimestamp;
   entity.status = "posed";
   entity.wasDisputed = false;
-  entity.proposedPrice = BigInt.fromI32(69); // we use 3 as the unproposed price
+  entity.proposedPrice = BigInt.fromI32(69); // we use 69 as the unproposed price
   entity.reproposedPrice = BigInt.fromI32(69);
   entity.price = BigInt.fromI32(69);
   entity.updates = "";
