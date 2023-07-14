@@ -20,6 +20,8 @@ export function handleQuestionInitialized(event: QuestionInitialized): void {
   entity.reproposedPrice = BigInt.fromI32(69);
   entity.price = BigInt.fromI32(69);
   entity.updates = "";
+  entity.transactionHash = event.transaction.hash.toHexString();
+  entity.logIndex = event.logIndex.minus(new BigInt(1)); // price request event is event before this one
   entity.save();
 }
 

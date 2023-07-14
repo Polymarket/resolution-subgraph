@@ -68,6 +68,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - MarketResolution
+        - AncillaryDataHashToQuestionId
       abis:
         - name: UmaCtfAdapterOld
           file: ./abis/UmaCtfAdapterOld.json
@@ -94,6 +95,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - MarketResolution
+        - AncillaryDataHashToQuestionId
       abis:
         - name: OptimisticOracleOld
           file: ./abis/OptimisticOracleOld.json
