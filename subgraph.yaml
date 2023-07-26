@@ -30,7 +30,7 @@ dataSources:
           handler: handleQuestionResolved
       file: ./src/uma-ctf-adapter.ts
   - kind: ethereum
-    name: NrUmaCtfAdapter
+    name: NegRiskUmaCtfAdapter
     network: matic
     source:
       address: "0x52fb0E5af1f5d9a7F0AB0466F56783C42eD70b5D"
