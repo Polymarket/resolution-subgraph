@@ -18,9 +18,10 @@ dataSources:
       abis:
         - name: UmaCtfAdapter
           file: ./abis/UmaCtfAdapter.json
-      eventHandlers:
-        - event: AncillaryDataUpdated(indexed bytes32,indexed address,bytes)
+      callHandlers:
+        - function: postUpdate(bytes32,bytes)
           handler: handleAncillaryDataUpdated
+      eventHandlers:
         - event: QuestionInitialized(indexed bytes32,indexed uint256,indexed
             address,bytes,address,uint256,uint256)
           handler: handleQuestionInitialized
