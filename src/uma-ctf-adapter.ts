@@ -62,6 +62,10 @@ export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
     call.inputs.questionID.toHexString()
   ) as MarketResolution;
 
+  if (entity == null) {
+    return;
+  }
+
   if (call.from != Address.fromBytes(entity.author)) {
     // only consider updates from question author
     return;
