@@ -3,7 +3,7 @@ import {
   QuestionInitialized,
   QuestionReset,
   QuestionResolved,
-  AncillaryDataUpdated,
+  PostUpdateCall,
 } from "../generated/UmaCtfAdapter/UmaCtfAdapter";
 import { MarketResolution } from "../generated/schema";
 
@@ -56,13 +56,15 @@ export function handleQuestionResolved(event: QuestionResolved): void {
   entity.save();
 }
 
-export function handleAncillaryDataUpdated(event: AncillaryDataUpdated): void {
-  log.info("update question {}", [event.params.questionID.toHexString()]);
-  let entity = MarketResolution.load(
-    event.params.questionID.toHexString()
-  ) as MarketResolution;
+export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
+  log.info("update question {}", [call.inputs.questionID.toHexString()]);
+  let entity = MarketResolution.load(call.inputs.questionID.toHexString());
 
-  if (event.params.owner != Address.fromBytes(entity.author)) {
+  if (entity == null) {
+    return;
+  }
+
+  if (call.from != Address.fromBytes(entity.author)) {
     // only consider updates from question author
     return;
   }
@@ -70,9 +72,9 @@ export function handleAncillaryDataUpdated(event: AncillaryDataUpdated): void {
   // add string delimited update
   entity.updates = entity.updates.concat(
     "," +
-      event.block.timestamp.toString() +
+      call.block.timestamp.toString() +
       "-" +
-      event.params.update.toHexString()
+      call.inputs.update.toHexString()
   );
   entity.save();
 }
