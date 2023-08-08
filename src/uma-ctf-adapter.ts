@@ -58,9 +58,7 @@ export function handleQuestionResolved(event: QuestionResolved): void {
 
 export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
   log.info("update question {}", [call.inputs.questionID.toHexString()]);
-  let entity = MarketResolution.load(
-    call.inputs.questionID.toHexString()
-  ) as MarketResolution;
+  let entity = MarketResolution.load(call.inputs.questionID.toHexString());
 
   if (entity == null) {
     return;
