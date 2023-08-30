@@ -1,14 +1,22 @@
-# resolution-subgraph
+# resolutions-subgraph
+
+## Environment Variables
+
+Create a `.env` file with the following variables:
+
+```bash
+MATIC_RPC_URL=
+```
 
 ## Local Development
 
-### Run graph node locally:
+### Run graph node locally
 
 ```bash
 docker compose up
 ```
 
-## Restart graph node and clear volumes:
+## Restart graph node and clear volumes
 
 ```bash
 docker compose down
@@ -37,7 +45,7 @@ Access the GraphQL editor at:
 **Example query:**
 
 ```graphQL
-query marketResolutions { 
+query marketResolutions {
   marketResolutions {
     id
     author
@@ -53,4 +61,8 @@ query marketResolutions {
 }
 ```
 
+## Goldsky
 
+```bash
+goldsky subgraph deploy resolution-subgraph/<version> --path .
+```

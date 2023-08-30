@@ -1,5 +1,6 @@
-version: "3.7"
+version: "3.8"
 services:
+
   postgres:
     image: postgres
     environment:
@@ -32,5 +33,3 @@ services:
       postgres_db: postgres
       ipfs: "ipfs:5001"
       ethereum: "matic:${MATIC_RPC_URL}"
-      #ethereum: 'development:http://ganache:8545'
-      #RUST_BACKTRACE: 1
