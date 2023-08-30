@@ -64,5 +64,5 @@ query marketResolutions {
 ## Goldsky
 
 ```bash
-goldsky subgraph deploy resolution-subgraph/<version> --path .
+goldsky subgraph deploy resolutions-subgraph/<version> --path .
 ```
