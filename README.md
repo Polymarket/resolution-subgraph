@@ -1,5 +1,13 @@
 # resolutions-subgraph
 
+## Codegen
+
+Run the following command to generate the `generated` folder:
+
+```bash
+yarn codegen
+```
+
 ## Environment Variables
 
 Create a `.env` file with the following variables:
@@ -62,6 +70,8 @@ query marketResolutions {
 ```
 
 ## Goldsky
+
+Build the subgraph with `yarn build` and then run the following to deploy:
 
 ```bash
 goldsky subgraph deploy resolutions-subgraph/<version> --path .

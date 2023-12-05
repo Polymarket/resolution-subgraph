@@ -1,10 +1,11 @@
 import { BigInt, Address, log } from "@graphprotocol/graph-ts";
+// the events we use have the same signatures across V2 and V3.1
 import {
   QuestionInitialized,
   QuestionReset,
   QuestionResolved,
   AncillaryDataUpdated,
-} from "../generated/UmaCtfAdapter/UmaCtfAdapter";
+} from "../generated/UmaCtfAdapterV2/UmaCtfAdapterV2";
 import { MarketResolution } from "../generated/schema";
 
 export function handleQuestionInitialized(event: QuestionInitialized): void {
