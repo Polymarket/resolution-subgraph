@@ -18,9 +18,10 @@ dataSources:
       abis:
         - name: UmaCtfAdapterV2
           file: ./abis/UmaCtfAdapterV2.json
-      eventHandlers:
-        - event: AncillaryDataUpdated(indexed bytes32,indexed address,bytes)
+      callHandlers:
+        - function: postUpdate(bytes32,bytes)
           handler: handleAncillaryDataUpdated
+      eventHandlers:
         - event: QuestionInitialized(indexed bytes32,indexed uint256,indexed
             address,bytes,address,uint256,uint256)
           handler: handleQuestionInitialized
@@ -45,9 +46,10 @@ dataSources:
       abis:
         - name: UmaCtfAdapterV31
           file: ./abis/UmaCtfAdapterV31.json
-      eventHandlers:
-        - event: AncillaryDataUpdated(indexed bytes32,indexed address,bytes)
+      callHandlers:
+        - function: postUpdate(bytes32,bytes)
           handler: handleAncillaryDataUpdated
+      eventHandlers:
         - event: QuestionInitialized(indexed bytes32,indexed uint256,indexed
             address,bytes,address,uint256,uint256)
           handler: handleQuestionInitialized
@@ -62,7 +64,7 @@ dataSources:
     source:
       address: "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d"
       abi: UmaCtfAdapterV31
-      startBlock: 46877259
+      startBlock: 50505488
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -72,9 +74,10 @@ dataSources:
       abis:
         - name: UmaCtfAdapterV31
           file: ./abis/UmaCtfAdapterV31.json
-      eventHandlers:
-        - event: AncillaryDataUpdated(indexed bytes32,indexed address,bytes)
+      callHandlers:
+        - function: postUpdate(bytes32,bytes)
           handler: handleAncillaryDataUpdated
+      eventHandlers:
         - event: QuestionInitialized(indexed bytes32,indexed uint256,indexed
             address,bytes,address,uint256,uint256)
           handler: handleQuestionInitialized
