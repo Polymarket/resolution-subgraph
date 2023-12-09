@@ -9,8 +9,8 @@
       "startBlock": 35203539
     },
     "NegRiskUmaCtfAdapter": {
-      "address": "0xb5eaA4ADc67afC2D51F9b5Fe16649DADfB6beA15",
-      "startBlock": 46877259
+      "address": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
+      "startBlock": 50505488
     },
     "OptimisticOracleV2": {
       "address": "0xeE3Afe347D5C74317041E2618C49534dAf887c24",
