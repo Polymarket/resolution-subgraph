@@ -1,14 +1,30 @@
-# resolution-subgraph
+# resolutions-subgraph
+
+## Codegen
+
+Run the following command to generate the `generated` folder:
+
+```bash
+yarn codegen
+```
+
+## Environment Variables
+
+Create a `.env` file with the following variables:
+
+```bash
+MATIC_RPC_URL=
+```
 
 ## Local Development
 
-### Run graph node locally:
+### Run graph node locally
 
 ```bash
 docker compose up
 ```
 
-## Restart graph node and clear volumes:
+## Restart graph node and clear volumes
 
 ```bash
 docker compose down
@@ -37,7 +53,7 @@ Access the GraphQL editor at:
 **Example query:**
 
 ```graphQL
-query marketResolutions { 
+query marketResolutions {
   marketResolutions {
     id
     author
@@ -53,4 +69,10 @@ query marketResolutions {
 }
 ```
 
+## Goldsky
 
+Build the subgraph with `yarn build` and then run the following to deploy:
+
+```bash
+goldsky subgraph deploy resolutions-subgraph/<version> --path .
+```

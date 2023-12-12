@@ -3,11 +3,11 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: UmaCtfAdapter
+    name: UmaCtfAdapterV2
     network: matic
     source:
+      abi: UmaCtfAdapterV2
       address: "0x6A9D222616C90FcA5754cd1333cFD9b7fb6a4F74"
-      abi: UmaCtfAdapter
       startBlock: 35203539
     mapping:
       kind: ethereum/events
@@ -16,8 +16,64 @@ dataSources:
       entities:
         - MarketResolution
       abis:
-        - name: UmaCtfAdapter
-          file: ./abis/UmaCtfAdapter.json
+        - name: UmaCtfAdapterV2
+          file: ./abis/UmaCtfAdapterV2.json
+      callHandlers:
+        - function: postUpdate(bytes32,bytes)
+          handler: handleAncillaryDataUpdated
+      eventHandlers:
+        - event: QuestionInitialized(indexed bytes32,indexed uint256,indexed
+            address,bytes,address,uint256,uint256)
+          handler: handleQuestionInitialized
+        - event: QuestionReset(indexed bytes32)
+          handler: handleQuestionReset
+        - event: QuestionResolved(indexed bytes32,indexed int256,uint256[])
+          handler: handleQuestionResolved
+      file: ./src/uma-ctf-adapter.ts
+  - kind: ethereum
+    name: UmaCtfAdapterV31
+    network: matic
+    source:
+      abi: UmaCtfAdapterV31
+      address: "0x157Ce2d672854c848c9b79C49a8Cc6cc89176a49"
+      startBlock: 46755254
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MarketResolution
+      abis:
+        - name: UmaCtfAdapterV31
+          file: ./abis/UmaCtfAdapterV31.json
+      callHandlers:
+        - function: postUpdate(bytes32,bytes)
+          handler: handleAncillaryDataUpdated
+      eventHandlers:
+        - event: QuestionInitialized(indexed bytes32,indexed uint256,indexed
+            address,bytes,address,uint256,uint256)
+          handler: handleQuestionInitialized
+        - event: QuestionReset(indexed bytes32)
+          handler: handleQuestionReset
+        - event: QuestionResolved(indexed bytes32,indexed int256,uint256[])
+          handler: handleQuestionResolved
+      file: ./src/uma-ctf-adapter.ts
+  - kind: ethereum
+    name: NegRiskUmaCtfAdapter
+    network: matic
+    source:
+      address: "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d"
+      abi: UmaCtfAdapterV31
+      startBlock: 50505488
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MarketResolution
+      abis:
+        - name: UmaCtfAdapterV31
+          file: ./abis/UmaCtfAdapterV31.json
       callHandlers:
         - function: postUpdate(bytes32,bytes)
           handler: handleAncillaryDataUpdated
@@ -53,7 +109,8 @@ dataSources:
         - event: ProposePrice(indexed address,indexed
             address,bytes32,uint256,bytes,int256,uint256,address)
           handler: handleProposePrice
-        - event: RequestPrice(indexed address,bytes32,uint256,bytes,address,uint256,uint256)
+        - event: RequestPrice(indexed
+            address,bytes32,uint256,bytes,address,uint256,uint256)
           handler: handleRequestPrice
       file: ./src/optimistic-oracle-v-2.ts
   - kind: ethereum
@@ -74,7 +131,8 @@ dataSources:
         - name: UmaCtfAdapterOld
           file: ./abis/UmaCtfAdapterOld.json
       eventHandlers:
-        - event: QuestionInitialized(indexed bytes32,bytes,uint256,address,uint256,uint256,bool)
+        - event: QuestionInitialized(indexed
+            bytes32,bytes,uint256,address,uint256,uint256,bool)
           handler: handleQuestionInitialized
         - event: QuestionReset(indexed bytes32)
           handler: handleQuestionReset
@@ -107,6 +165,7 @@ dataSources:
         - event: ProposePrice(indexed address,indexed
             address,bytes32,uint256,bytes,int256,uint256,address)
           handler: handleProposePrice
-        - event: RequestPrice(indexed address,bytes32,uint256,bytes,address,uint256,uint256)
+        - event: RequestPrice(indexed
+            address,bytes32,uint256,bytes,address,uint256,uint256)
           handler: handleRequestPrice
       file: ./src/optimistic-oracle-old.ts

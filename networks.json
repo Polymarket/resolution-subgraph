@@ -1,8 +1,16 @@
 {
   "matic": {
-    "UmaCtfAdapter": {
+    "umaCtfAdapterV31": {
+      "address": "0x157Ce2d672854c848c9b79C49a8Cc6cc89176a49",
+      "startBlock": 46755254
+    },
+    "UmaCtfAdapterV2": {
       "address": "0x6A9D222616C90FcA5754cd1333cFD9b7fb6a4F74",
       "startBlock": 35203539
+    },
+    "NegRiskUmaCtfAdapter": {
+      "address": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
+      "startBlock": 50505488
     },
     "OptimisticOracleV2": {
       "address": "0xeE3Afe347D5C74317041E2618C49534dAf887c24",
