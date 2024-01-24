@@ -18,3 +18,8 @@ type AncillaryDataHashToQuestionId @entity {
   id: String! # ancillaryDataHash
   questionId: String! # questionID
 }
+
+type Moderator @entity {
+  id: String! # address
+  canMod: Boolean! # bool
+}
