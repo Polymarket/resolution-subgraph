@@ -31,7 +31,7 @@ docker compose down
 ```
 
 ```bash
-sudo docker rm resolution-subgraph_graph-node_1 && sudo docker rm resolution-subgraph_ipfs_1 && sudo docker rm resolution-subgraph_postgres_1 && sudo docker rm resolution-subgraph_ganache_1
+sudo docker rm resolution-subgraph-graph-node-1 && sudo docker rm resolution-subgraph-ipfs-1 && sudo docker rm resolution-subgraph-postgres-1 && sudo docker rm resolution-subgraph-ganache-1
 ```
 
 ## Create and deploy subgraph
