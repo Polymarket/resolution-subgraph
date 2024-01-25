@@ -119,40 +119,6 @@ function handleApprovalPostUpdate(call: PostUpdateCall): void {
   return;
 }
 
-function handlePostUpdate(call: PostUpdateCall): void {
-  let questionID = call.inputs.questionID.toHexString();
-
-  log.info("handling postUpdate question {}", [questionID]);
-  let entity = MarketResolution.load(call.inputs.questionID.toHexString());
-
-  if (entity == null) {
-    return;
-  }
-
-  let caller = call.from;
-
-  // If approved and the caller is not a moderator return
-  // only consider updates from moderators after approval
-  if (entity.approved && !isModerator(caller.toHexString())) {
-    return;
-  }
-
-  // If not approved and the caller is not the author return
-  // only consider updates from the author before approval
-  if (!entity.approved && caller != Address.fromBytes(entity.author)) {
-    return;
-  }
-
-  // add string delimited update
-  entity.updates = entity.updates.concat(
-    "," +
-      call.block.timestamp.toString() + 
-      "-" + 
-      call.inputs.update.toHexString()
-  );
-  entity.save();
-}
-
 export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
   log.info("update question {}", [call.inputs.questionID.toHexString()]);
 
@@ -167,7 +133,4 @@ export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
   if (isApprovalUpdate(update)) {
     return handleApprovalPostUpdate(call);
   }
-
-  // Normal flow
-  return handlePostUpdate(call);
 }
