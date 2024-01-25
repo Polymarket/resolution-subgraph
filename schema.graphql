@@ -1,3 +1,4 @@
+# TODO: modify MarketResolution to add an Approved boolean
 type MarketResolution @entity {
   id: String! # questionID
   newVersionQ: Boolean! # bool
@@ -22,4 +23,13 @@ type AncillaryDataHashToQuestionId @entity {
 type Moderator @entity {
   id: String! # address
   canMod: Boolean! # bool
+}
+
+type Revision @entity {
+  id: String!
+  moderator: String! # address
+  questionId: String! # questionID of the update
+  timestamp: BigInt! # uint256
+  update: String! # the update posted
+  transactionHash: String! # transaction hash
 }

@@ -57,6 +57,19 @@ export function handleQuestionResolved(event: QuestionResolved): void {
   entity.save();
 }
 
+
+function handleRevision(call: PostUpdateCall): void {
+
+  // TODO
+  return;
+}
+
+function handleApproved(call: PostUpdateCall): void {
+
+  // TODO
+  return;
+}
+
 export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
   log.info("update question {}", [call.inputs.questionID.toHexString()]);
   let entity = MarketResolution.load(call.inputs.questionID.toHexString());
@@ -70,12 +83,15 @@ export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
     return;
   }
 
+  let update = call.inputs.update.toHexString();
+
+  // If the call is a revision, add a revision entity
+
+
   // add string delimited update
   entity.updates = entity.updates.concat(
     "," +
-      call.block.timestamp.toString() +
-      "-" +
-      call.inputs.update.toHexString()
+      call.block.timestamp.toString() + "-" + update
   );
   entity.save();
 }
