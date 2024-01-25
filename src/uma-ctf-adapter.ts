@@ -6,7 +6,7 @@ import {
   QuestionResolved,
   PostUpdateCall,
 } from "../generated/UmaCtfAdapterV2/UmaCtfAdapterV2";
-import { MarketResolution, Revision } from "../generated/schema";
+import { MarketResolution, Moderator, Revision } from "../generated/schema";
 import { APPROVAL_IDENTIFIER, REVISION_IDENTIFIER } from "./utils/constants";
 
 export function handleQuestionInitialized(event: QuestionInitialized): void {
@@ -63,26 +63,25 @@ function handleRevisionPostUpdate(call: PostUpdateCall): void {
   let questionId = call.inputs.questionID.toHexString();
   log.info("handling revision postUpdate question {}", [questionId]);
 
-  let timestamp = call.block.timestamp;
   let moderator = call.transaction.from.toHexString();
-  let update = call.inputs.update.toString();
-  let transactionHash = call.transaction.hash.toHexString();
 
   // Ensure that the caller is a moderator
-  // TODO
-  
-  //TODO: potential issue if there are multiple updates in the same block
+  let mod = Moderator.load(moderator);
+  if(mod == null) {
+    return;
+  }
+
+  // Revision key: questionId + transactionIndex + update hex
   let revision = new Revision(
-    questionId + 
-      "-" + 
-      call.inputs.update.toHexString(),
+    questionId + "-" + 
+    call.transaction.index.toString() + "-"  
+    + call.inputs.update.toHexString()
   );
   revision.questionId = questionId;
   revision.moderator = moderator;
-  revision.timestamp = timestamp;
-  revision.update = update;
-  revision.transactionHash = transactionHash;
-
+  revision.timestamp = call.block.timestamp;
+  revision.update = call.inputs.update.toString();
+  revision.transactionHash = call.transaction.hash.toHexString();
   revision.save();
   return;
 }
@@ -123,12 +122,12 @@ export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
 
   let update = call.inputs.update.toString();
 
-  // Revision
+  // Revision flow
   if (update.includes(REVISION_IDENTIFIER)) {
     return handleRevisionPostUpdate(call);
   }
 
-  // Approval
+  // Approval flow
   if (update.includes(APPROVAL_IDENTIFIER)) {
     return handleApprovedPostUpdate(call);
   }
