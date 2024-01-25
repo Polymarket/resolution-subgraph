@@ -129,8 +129,17 @@ function handlePostUpdate(call: PostUpdateCall): void {
     return;
   }
 
-  if (call.from != Address.fromBytes(entity.author)) {
-    // only consider updates from question author
+  let caller = call.from;
+
+  // If approved and the caller is not a moderator return
+  // only consider updates from moderators after approval
+  if (entity.approved && !isModerator(caller.toHexString())) {
+    return;
+  }
+
+  // If not approved and the caller is not the author return
+  // only consider updates from the author before approval
+  if (!entity.approved && caller != Address.fromBytes(entity.author)) {
     return;
   }
 
