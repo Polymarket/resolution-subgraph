@@ -60,6 +60,14 @@ export function handleQuestionResolved(event: QuestionResolved): void {
 }
 
 
+function isModerator(modAddress: string) : boolean {
+  let mod = Moderator.load(modAddress);
+  if(mod == null) {
+    return false;
+  }
+  return true;
+}
+
 function handleRevisionPostUpdate(call: PostUpdateCall): void {
   let questionId = call.inputs.questionID.toHexString();
   log.info("handling revision postUpdate question {}", [questionId]);
@@ -67,8 +75,7 @@ function handleRevisionPostUpdate(call: PostUpdateCall): void {
   let modAddress = call.transaction.from.toHexString();
 
   // Ensure that the caller is a moderator
-  let mod = Moderator.load(modAddress);
-  if(mod == null) {
+  if(isModerator(modAddress)) {
     return;
   }
 
@@ -96,8 +103,19 @@ function handleRevisionPostUpdate(call: PostUpdateCall): void {
 function handleApprovalPostUpdate(call: PostUpdateCall): void {
   let questionID = call.inputs.questionID.toHexString();
   log.info("handling approval postUpdate question {}", [questionID]);
+  let modAddress = call.from.toHexString();
 
-  // TODO
+  if(isModerator(modAddress)) {
+    return;
+  }
+
+  let mkt = MarketResolution.load(questionID);
+  if(mkt == null) {
+    return;
+  }
+
+  mkt.approved = true;
+  mkt.save();
   return;
 }
 
