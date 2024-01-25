@@ -6,7 +6,8 @@ import {
   QuestionResolved,
   PostUpdateCall,
 } from "../generated/UmaCtfAdapterV2/UmaCtfAdapterV2";
-import { MarketResolution } from "../generated/schema";
+import { MarketResolution, Revision } from "../generated/schema";
+import { APPROVAL_IDENTIFIER, REVISION_IDENTIFIER } from "./utils/constants";
 
 export function handleQuestionInitialized(event: QuestionInitialized): void {
   log.info("initialize question {}", [event.params.questionID.toHexString()]);
@@ -58,20 +59,44 @@ export function handleQuestionResolved(event: QuestionResolved): void {
 }
 
 
-function handleRevision(call: PostUpdateCall): void {
+function handleRevisionPostUpdate(call: PostUpdateCall): void {
+  let questionId = call.inputs.questionID.toHexString();
+  log.info("handling revision postUpdate question {}", [questionId]);
+
+  let timestamp = call.block.timestamp;
+  let moderator = call.transaction.from.toHexString();
+  let update = call.inputs.update.toString();
+  let transactionHash = call.transaction.hash.toHexString();
+
+  // Ensure that the caller is a moderator
+  // TODO
+  
+  //TODO: potential issue if there are multiple updates in the same block
+  let revision = new Revision(
+    questionId + 
+      "-" + 
+      call.inputs.update.toHexString(),
+  );
+  revision.questionId = questionId;
+  revision.moderator = moderator;
+  revision.timestamp = timestamp;
+  revision.update = update;
+  revision.transactionHash = transactionHash;
+
+  revision.save();
+  return;
+}
+
+function handleApprovedPostUpdate(call: PostUpdateCall): void {
 
   // TODO
   return;
 }
 
-function handleApproved(call: PostUpdateCall): void {
+function handlePostUpdate(call: PostUpdateCall): void {
+  let questionID = call.inputs.questionID.toHexString();
 
-  // TODO
-  return;
-}
-
-export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
-  log.info("update question {}", [call.inputs.questionID.toHexString()]);
+  log.info("handling postUpdate question {}", [questionID]);
   let entity = MarketResolution.load(call.inputs.questionID.toHexString());
 
   if (entity == null) {
@@ -83,15 +108,31 @@ export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
     return;
   }
 
-  let update = call.inputs.update.toHexString();
-
-  // If the call is a revision, add a revision entity
-
-
   // add string delimited update
   entity.updates = entity.updates.concat(
     "," +
-      call.block.timestamp.toString() + "-" + update
+      call.block.timestamp.toString() + 
+      "-" + 
+      call.inputs.update.toHexString()
   );
   entity.save();
+}
+
+export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
+  log.info("update question {}", [call.inputs.questionID.toHexString()]);
+
+  let update = call.inputs.update.toString();
+
+  // Revision
+  if (update.includes(REVISION_IDENTIFIER)) {
+    return handleRevisionPostUpdate(call);
+  }
+
+  // Approval
+  if (update.includes(APPROVAL_IDENTIFIER)) {
+    return handleApprovedPostUpdate(call);
+  }
+
+  // Normal flow
+  return handlePostUpdate(call);
 }

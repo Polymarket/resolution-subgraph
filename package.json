@@ -8,7 +8,7 @@
     "create-local": "graph create --node http://localhost:8020/ resolutions-subgraph",
     "remove-local": "graph remove --node http://localhost:8020/ resolutions-subgraph",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 resolutions-subgraph",
-    "test": "graph test"
+    "test": "graph test -d"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.51.1",
