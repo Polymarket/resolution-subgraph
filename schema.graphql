@@ -12,6 +12,7 @@ type MarketResolution @entity {
   updates: String! # comma separated updates
   transactionHash: String # txHash
   logIndex: BigInt # uint256
+  approved: Boolean # bool
 }
 
 type AncillaryDataHashToQuestionId @entity {
@@ -22,4 +23,13 @@ type AncillaryDataHashToQuestionId @entity {
 type Moderator @entity {
   id: String! # address
   canMod: Boolean! # bool
+}
+
+type Revision @entity {
+  id: String!
+  moderator: String! # address
+  questionId: String! # questionID of the update
+  timestamp: BigInt! # uint256
+  update: String! # the update posted
+  transactionHash: String! # transaction hash
 }

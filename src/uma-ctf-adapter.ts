@@ -6,7 +6,8 @@ import {
   QuestionResolved,
   PostUpdateCall,
 } from "../generated/UmaCtfAdapterV2/UmaCtfAdapterV2";
-import { MarketResolution } from "../generated/schema";
+import { MarketResolution, Moderator, Revision } from "../generated/schema";
+import { isApprovalUpdate, isRevisionUpdate } from "./utils/qualifier";
 
 export function handleQuestionInitialized(event: QuestionInitialized): void {
   log.info("initialize question {}", [event.params.questionID.toHexString()]);
@@ -23,6 +24,7 @@ export function handleQuestionInitialized(event: QuestionInitialized): void {
   entity.updates = "";
   entity.transactionHash = event.transaction.hash.toHexString();
   entity.logIndex = event.logIndex.minus(new BigInt(1)); // price request event is event before this one
+  entity.approved = false;
   entity.save();
 }
 
@@ -57,25 +59,78 @@ export function handleQuestionResolved(event: QuestionResolved): void {
   entity.save();
 }
 
+
+function isModerator(modAddress: string) : boolean {
+  let mod = Moderator.load(modAddress);
+  if(mod == null) {
+    return false;
+  }
+  return true;
+}
+
+function handleRevisionPostUpdate(call: PostUpdateCall): void {
+  let questionId = call.inputs.questionID.toHexString();
+  log.info("handling revision postUpdate question {}", [questionId]);
+
+  let modAddress = call.transaction.from.toHexString();
+
+  // Ensure that the caller is a moderator
+  if(isModerator(modAddress)) {
+    return;
+  }
+
+  // Revision entities only get created before a market is approved
+  let mkt = MarketResolution.load(questionId);
+  if(mkt == null || mkt.approved) {
+    return;
+  } 
+
+  // Revision key: questionId + transactionIndex + update hex
+  let revision = new Revision(
+    questionId + "-" + 
+    call.transaction.index.toString() + "-"  
+    + call.inputs.update.toHexString()
+  );
+  revision.questionId = questionId;
+  revision.moderator = modAddress;
+  revision.timestamp = call.block.timestamp;
+  revision.update = call.inputs.update.toString();
+  revision.transactionHash = call.transaction.hash.toHexString();
+  revision.save();
+  return;
+}
+
+function handleApprovalPostUpdate(call: PostUpdateCall): void {
+  let questionID = call.inputs.questionID.toHexString();
+  log.info("handling approval postUpdate question {}", [questionID]);
+  let modAddress = call.from.toHexString();
+
+  if(isModerator(modAddress)) {
+    return;
+  }
+
+  let mkt = MarketResolution.load(questionID);
+  if(mkt == null) {
+    return;
+  }
+
+  mkt.approved = true;
+  mkt.save();
+  return;
+}
+
 export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
   log.info("update question {}", [call.inputs.questionID.toHexString()]);
-  let entity = MarketResolution.load(call.inputs.questionID.toHexString());
 
-  if (entity == null) {
-    return;
+  let update = call.inputs.update.toString();
+
+  // Revision flow
+  if (isRevisionUpdate(update)) {
+    return handleRevisionPostUpdate(call);
   }
 
-  if (call.from != Address.fromBytes(entity.author)) {
-    // only consider updates from question author
-    return;
+  // Approval flow
+  if (isApprovalUpdate(update)) {
+    return handleApprovalPostUpdate(call);
   }
-
-  // add string delimited update
-  entity.updates = entity.updates.concat(
-    "," +
-      call.block.timestamp.toString() +
-      "-" +
-      call.inputs.update.toHexString()
-  );
-  entity.save();
 }

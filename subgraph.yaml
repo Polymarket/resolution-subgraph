@@ -15,6 +15,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - MarketResolution
+        - Revision
       abis:
         - name: UmaCtfAdapterV2
           file: ./abis/UmaCtfAdapterV2.json
@@ -43,6 +44,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - MarketResolution
+        - Revision
       abis:
         - name: UmaCtfAdapterV31
           file: ./abis/UmaCtfAdapterV31.json
@@ -71,6 +73,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - MarketResolution
+        - Revision
       abis:
         - name: UmaCtfAdapterV31
           file: ./abis/UmaCtfAdapterV31.json

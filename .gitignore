@@ -4,3 +4,8 @@ generated/
 
 pnpm-lock.yaml
 .env
+
+# matchstick
+tests/.latest.json
+tests/.bin/
+tests/.docker/
