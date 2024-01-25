@@ -217,6 +217,19 @@ export class MarketResolution extends Entity {
       this.set("logIndex", Value.fromBigInt(<BigInt>value));
     }
   }
+
+  get approved(): boolean {
+    let value = this.get("approved");
+    if (!value || value.kind == ValueKind.NULL) {
+      return false;
+    } else {
+      return value.toBoolean();
+    }
+  }
+
+  set approved(value: boolean) {
+    this.set("approved", Value.fromBoolean(value));
+  }
 }
 
 export class AncillaryDataHashToQuestionId extends Entity {

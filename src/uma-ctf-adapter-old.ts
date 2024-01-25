@@ -32,6 +32,7 @@ export function handleQuestionInitialized(
   entity.reproposedPrice = BigInt.fromI32(69);
   entity.price = BigInt.fromI32(69);
   entity.updates = "";
+  entity.approved = false;
   entity.save();
 }
 

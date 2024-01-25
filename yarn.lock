@@ -753,6 +753,11 @@ asn1js@^3.0.1, asn1js@^3.0.5:
     pvutils "^1.1.3"
     tslib "^2.4.0"
 
+assemblyscript-regex@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.npmjs.org/assemblyscript-regex/-/assemblyscript-regex-1.6.4.tgz#b0755b470fc817fdb0957b9d7b5f473b6474e809"
+  integrity sha512-LiuyzuPMASyZLRgZrIktyLyZjxihEhHkzfRHv8FPDnLhBn8WefFe45jGF6Ug06/0rMMdNNRuQS3qXVLy9YyO6g==
+
 assemblyscript@0.19.10:
   version "0.19.10"
   resolved "https://registry.yarnpkg.com/assemblyscript/-/assemblyscript-0.19.10.tgz#7ede6d99c797a219beb4fa4614c3eab9e6343c8e"

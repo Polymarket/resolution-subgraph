@@ -7,7 +7,7 @@ import {
   PostUpdateCall,
 } from "../generated/UmaCtfAdapterV2/UmaCtfAdapterV2";
 import { MarketResolution, Moderator, Revision } from "../generated/schema";
-import { APPROVAL_IDENTIFIER, REVISION_IDENTIFIER } from "./utils/constants";
+import { isApprovalUpdate, isRevisionUpdate } from "./utils/qualifier";
 
 export function handleQuestionInitialized(event: QuestionInitialized): void {
   log.info("initialize question {}", [event.params.questionID.toHexString()]);
@@ -24,6 +24,7 @@ export function handleQuestionInitialized(event: QuestionInitialized): void {
   entity.updates = "";
   entity.transactionHash = event.transaction.hash.toHexString();
   entity.logIndex = event.logIndex.minus(new BigInt(1)); // price request event is event before this one
+  entity.approved = false;
   entity.save();
 }
 
@@ -63,13 +64,19 @@ function handleRevisionPostUpdate(call: PostUpdateCall): void {
   let questionId = call.inputs.questionID.toHexString();
   log.info("handling revision postUpdate question {}", [questionId]);
 
-  let moderator = call.transaction.from.toHexString();
+  let modAddress = call.transaction.from.toHexString();
 
   // Ensure that the caller is a moderator
-  let mod = Moderator.load(moderator);
+  let mod = Moderator.load(modAddress);
   if(mod == null) {
     return;
   }
+
+  // Revision entities only get created before a market is approved
+  let mkt = MarketResolution.load(questionId);
+  if(mkt == null || mkt.approved) {
+    return;
+  } 
 
   // Revision key: questionId + transactionIndex + update hex
   let revision = new Revision(
@@ -78,7 +85,7 @@ function handleRevisionPostUpdate(call: PostUpdateCall): void {
     + call.inputs.update.toHexString()
   );
   revision.questionId = questionId;
-  revision.moderator = moderator;
+  revision.moderator = modAddress;
   revision.timestamp = call.block.timestamp;
   revision.update = call.inputs.update.toString();
   revision.transactionHash = call.transaction.hash.toHexString();
@@ -86,7 +93,9 @@ function handleRevisionPostUpdate(call: PostUpdateCall): void {
   return;
 }
 
-function handleApprovedPostUpdate(call: PostUpdateCall): void {
+function handleApprovalPostUpdate(call: PostUpdateCall): void {
+  let questionID = call.inputs.questionID.toHexString();
+  log.info("handling approval postUpdate question {}", [questionID]);
 
   // TODO
   return;
@@ -123,13 +132,13 @@ export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
   let update = call.inputs.update.toString();
 
   // Revision flow
-  if (update.includes(REVISION_IDENTIFIER)) {
+  if (isRevisionUpdate(update)) {
     return handleRevisionPostUpdate(call);
   }
 
   // Approval flow
-  if (update.includes(APPROVAL_IDENTIFIER)) {
-    return handleApprovedPostUpdate(call);
+  if (isApprovalUpdate(update)) {
+    return handleApprovalPostUpdate(call);
   }
 
   // Normal flow
