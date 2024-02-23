@@ -4,7 +4,7 @@ import {
   RequestPrice as RequestPriceEvent,
 } from "../generated/OptimisticOracleV2/OptimisticOracleV2";
 import { MarketResolution } from "../generated/schema";
-import { UMA_CTF_ADDRESS } from "./utils/constants";
+import { UMA_CTF_ADDRESS, NEG_RISK_UMA_CTF } from "./utils/constants";
 import { crypto, Address } from "@graphprotocol/graph-ts";
 
 export function handleDisputePrice(event: DisputePriceEvent): void {
@@ -16,7 +16,10 @@ export function handleDisputePrice(event: DisputePriceEvent): void {
     return;
   }
   // make sure from UMA CTF adapter
-  if (event.params.requester != Address.fromHexString(UMA_CTF_ADDRESS)) {
+  if (
+    event.params.requester != Address.fromHexString(UMA_CTF_ADDRESS) &&
+    event.params.requester != Address.fromHexString(NEG_RISK_UMA_CTF)
+  ) {
     return;
   }
   if (entity.status == "proposed") {
@@ -41,7 +44,10 @@ export function handleProposePrice(event: ProposePriceEvent): void {
     return;
   }
   // make sure from UMA CTF adapter
-  if (event.params.requester != Address.fromHexString(UMA_CTF_ADDRESS)) {
+  if (
+    event.params.requester != Address.fromHexString(UMA_CTF_ADDRESS) &&
+    event.params.requester != Address.fromHexString(NEG_RISK_UMA_CTF)
+  ) {
     return;
   }
   if (entity.status == "posed") {
@@ -67,7 +73,10 @@ export function handleRequestPrice(event: RequestPriceEvent): void {
     return;
   }
   // make sure from UMA CTF adapter
-  if (event.params.requester != Address.fromHexString(UMA_CTF_ADDRESS)) {
+  if (
+    event.params.requester != Address.fromHexString(UMA_CTF_ADDRESS) &&
+    event.params.requester != Address.fromHexString(NEG_RISK_UMA_CTF)
+  ) {
     return;
   }
   entity.transactionHash = event.transaction.hash.toHexString();
