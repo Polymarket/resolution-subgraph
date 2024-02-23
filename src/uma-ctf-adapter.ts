@@ -24,7 +24,11 @@ export function handleQuestionInitialized(event: QuestionInitialized): void {
   entity.updates = "";
   entity.transactionHash = event.transaction.hash.toHexString();
   entity.logIndex = event.logIndex.minus(new BigInt(1)); // price request event is event before this one
-  entity.approved = false;
+  if (isModerator(event.params.creator.toHexString())) {
+    entity.approved = true;
+  } else {
+    entity.approved = false;
+  }
   entity.save();
 }
 
@@ -59,10 +63,9 @@ export function handleQuestionResolved(event: QuestionResolved): void {
   entity.save();
 }
 
-
-function isModerator(modAddress: string) : boolean {
+function isModerator(modAddress: string): boolean {
   let mod = Moderator.load(modAddress);
-  if(mod == null) {
+  if (mod == null) {
     return false;
   }
   return true;
@@ -75,21 +78,23 @@ function handleRevisionPostUpdate(call: PostUpdateCall): void {
   let modAddress = call.transaction.from.toHexString();
 
   // Ensure that the caller is a moderator
-  if(isModerator(modAddress)) {
+  if (!isModerator(modAddress)) {
     return;
   }
 
   // Revision entities only get created before a market is approved
   let mkt = MarketResolution.load(questionId);
-  if(mkt == null || mkt.approved) {
+  if (mkt == null || mkt.approved) {
     return;
-  } 
+  }
 
   // Revision key: questionId + transactionIndex + update hex
   let revision = new Revision(
-    questionId + "-" + 
-    call.transaction.index.toString() + "-"  
-    + call.inputs.update.toHexString()
+    questionId +
+      "-" +
+      call.transaction.index.toString() +
+      "-" +
+      call.inputs.update.toHexString()
   );
   revision.questionId = questionId;
   revision.moderator = modAddress;
@@ -105,18 +110,36 @@ function handleApprovalPostUpdate(call: PostUpdateCall): void {
   log.info("handling approval postUpdate question {}", [questionID]);
   let modAddress = call.from.toHexString();
 
-  if(isModerator(modAddress)) {
+  if (!isModerator(modAddress)) {
     return;
   }
 
   let mkt = MarketResolution.load(questionID);
-  if(mkt == null) {
+  if (mkt == null) {
     return;
   }
 
   mkt.approved = true;
   mkt.save();
   return;
+}
+
+function handleClarificationsPostUpdate(call: PostUpdateCall): void {
+  log.info("update question {}", [call.inputs.questionID.toHexString()]);
+  let entity = MarketResolution.load(call.inputs.questionID.toHexString());
+  if (entity == null) {
+    return;
+  }
+  if (!isModerator(call.from.toHexString())) {
+    return;
+  }
+  entity.updates = entity.updates.concat(
+    "," +
+      call.block.timestamp.toString() +
+      "-" +
+      call.inputs.update.toHexString()
+  );
+  entity.save();
 }
 
 export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
@@ -133,4 +156,7 @@ export function handleAncillaryDataUpdated(call: PostUpdateCall): void {
   if (isApprovalUpdate(update)) {
     return handleApprovalPostUpdate(call);
   }
+
+  // Standard Post Approval Clarification Flow
+  return handleClarificationsPostUpdate(call);
 }
