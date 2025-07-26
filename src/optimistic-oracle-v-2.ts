@@ -4,7 +4,7 @@ import {
   RequestPrice as RequestPriceEvent,
 } from "../generated/OptimisticOracleV2/OptimisticOracleV2";
 import { MarketResolution } from "../generated/schema";
-import { UMA_CTF_ADAPTER_V2_ADDRESS,UMA_CTF_ADAPTER_V3_ADDRESS, NEG_RISK_UMA_CTF_ADAPTER_ADDRESS} from "./utils/constants";
+import { UMA_CTF_ADAPTER_V2_ADDRESS,UMA_CTF_ADAPTER_V3_ADDRESS, NEG_RISK_UMA_CTF_ADAPTER_ADDRESS } from "./utils/constants";
 import { crypto, Address } from "@graphprotocol/graph-ts";
 
 export function handleDisputePrice(event: DisputePriceEvent): void {
