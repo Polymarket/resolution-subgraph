@@ -1,4 +1,4 @@
-import { BigInt, Address, log } from "@graphprotocol/graph-ts";
+import { BigInt, log } from "@graphprotocol/graph-ts";
 // the events we use have the same signatures across V2 and V3.1
 import {
   QuestionInitialized,

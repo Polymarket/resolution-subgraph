@@ -1,4 +1,4 @@
-import { BigInt, Address, log } from "@graphprotocol/graph-ts";
+import { log } from "@graphprotocol/graph-ts";
 import { ModAdded, ModRemoved } from "../generated/ModRegistry/ModRegistry";
 import { Moderator } from "../generated/schema";
 
