@@ -7,11 +7,11 @@ import {
   AncillaryDataHashToQuestionId,
   MarketResolution,
 } from "../generated/schema";
-import { UMA_CTF_OLD_ADDRESS } from "./utils/constants";
+import { UMA_CTF_ADAPTER_OLD_ADDRESS } from "./utils/constants";
 import { Address, crypto } from "@graphprotocol/graph-ts";
 
 export function handleDisputePrice(event: DisputePriceEvent): void {
-  if (event.params.requester != Address.fromHexString(UMA_CTF_OLD_ADDRESS)) {
+  if (event.params.requester != Address.fromHexString(UMA_CTF_ADAPTER_OLD_ADDRESS)) {
     return; // only consider requests from old UMA CTF adapter
   }
   let mapping = AncillaryDataHashToQuestionId.load(
@@ -31,7 +31,7 @@ export function handleDisputePrice(event: DisputePriceEvent): void {
 }
 
 export function handleProposePrice(event: ProposePriceEvent): void {
-  if (event.params.requester != Address.fromHexString(UMA_CTF_OLD_ADDRESS)) {
+  if (event.params.requester != Address.fromHexString(UMA_CTF_ADAPTER_OLD_ADDRESS)) {
     return; // only consider requests from old UMA CTF adapter
   }
   let mapping = AncillaryDataHashToQuestionId.load(
@@ -51,7 +51,7 @@ export function handleProposePrice(event: ProposePriceEvent): void {
 }
 
 export function handleRequestPrice(event: RequestPriceEvent): void {
-  if (event.params.requester != Address.fromHexString(UMA_CTF_OLD_ADDRESS)) {
+  if (event.params.requester != Address.fromHexString(UMA_CTF_ADAPTER_OLD_ADDRESS)) {
     return; // only consider requests from old UMA CTF adapter
   }
   let mapping = AncillaryDataHashToQuestionId.load(
