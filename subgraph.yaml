@@ -1,6 +1,8 @@
 specVersion: 0.0.5
 schema:
   file: ./schema.graphql
+features:
+  - grafting
 dataSources:
   - kind: ethereum
     name: UmaCtfAdapterV2
@@ -48,6 +50,35 @@ dataSources:
       abis:
         - name: UmaCtfAdapterV31
           file: ./abis/UmaCtfAdapterV31.json
+      callHandlers:
+        - function: postUpdate(bytes32,bytes)
+          handler: handleAncillaryDataUpdated
+      eventHandlers:
+        - event: QuestionInitialized(indexed bytes32,indexed uint256,indexed
+            address,bytes,address,uint256,uint256)
+          handler: handleQuestionInitialized
+        - event: QuestionReset(indexed bytes32)
+          handler: handleQuestionReset
+        - event: QuestionResolved(indexed bytes32,indexed int256,uint256[])
+          handler: handleQuestionResolved
+      file: ./src/uma-ctf-adapter.ts
+  - kind: ethereum
+    name: UmaCtfAdapterV4
+    network: matic
+    source:
+      abi: UmaCtfAdapterV4
+      address: "0x65070BE91477460D8A7AeEb94ef92fe056C2f2A7"
+      startBlock: 74797879
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MarketResolution
+        - Revision
+      abis:
+        - name: UmaCtfAdapterV4
+          file: ./abis/UmaCtfAdapterV4.json
       callHandlers:
         - function: postUpdate(bytes32,bytes)
           handler: handleAncillaryDataUpdated
@@ -116,6 +147,33 @@ dataSources:
             address,bytes32,uint256,bytes,address,uint256,uint256)
           handler: handleRequestPrice
       file: ./src/optimistic-oracle-v-2.ts
+  - kind: ethereum
+    name: ManagedOptimisticOracleV2
+    network: matic
+    source:
+      address: "0x2C0367a9DB231dDeBd88a94b4f6461a6e47C58B1"
+      abi: ManagedOptimisticOracleV2
+      startBlock: 74677419
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MarketResolution
+      abis:
+        - name: ManagedOptimisticOracleV2
+          file: ./abis/ManagedOptimisticOracleV2.json
+      eventHandlers:
+        - event: DisputePrice(indexed address,indexed address,indexed
+            address,bytes32,uint256,bytes,int256)
+          handler: handleDisputePrice
+        - event: ProposePrice(indexed address,indexed
+            address,bytes32,uint256,bytes,int256,uint256,address)
+          handler: handleProposePrice
+        - event: RequestPrice(indexed
+            address,bytes32,uint256,bytes,address,uint256,uint256)
+          handler: handleRequestPrice
+      file: ./src/managed-oo-v2.ts
   - kind: ethereum
     name: UmaCtfAdapterOld
     network: matic
