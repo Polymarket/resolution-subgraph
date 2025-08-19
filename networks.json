@@ -1,5 +1,9 @@
 {
   "matic": {
+    "umaCtfAdapterV4": {
+      "address": "0x65070BE91477460D8A7AeEb94ef92fe056C2f2A7",
+      "startBlock": 74797879
+    },
     "umaCtfAdapterV31": {
       "address": "0x157Ce2d672854c848c9b79C49a8Cc6cc89176a49",
       "startBlock": 71214173
@@ -11,6 +15,10 @@
     "NegRiskUmaCtfAdapter": {
       "address": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
       "startBlock": 50505488
+    },
+    "ManagedOptimisticOracleV2": {
+      "address": "0x2C0367a9DB231dDeBd88a94b4f6461a6e47C58B1",
+      "startBlock": 74677419
     },
     "OptimisticOracleV2": {
       "address": "0xeE3Afe347D5C74317041E2618C49534dAf887c24",

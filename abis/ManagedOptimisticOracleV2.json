@@ -1,0 +1,2491 @@
+[
+    {
+        "inputs": [],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+    },
+    {
+        "inputs": [],
+        "name": "AccessControlBadConfirmation",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint48",
+                "name": "schedule",
+                "type": "uint48"
+            }
+        ],
+        "name": "AccessControlEnforcedDefaultAdminDelay",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "AccessControlEnforcedDefaultAdminRules",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "defaultAdmin",
+                "type": "address"
+            }
+        ],
+        "name": "AccessControlInvalidDefaultAdmin",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "neededRole",
+                "type": "bytes32"
+            }
+        ],
+        "name": "AccessControlUnauthorizedAccount",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "target",
+                "type": "address"
+            }
+        ],
+        "name": "AddressEmptyCode",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "AncillaryDataTooLong",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "BondBelowMinimumBond",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "BondExceedsMaximumBond",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "CannotProposeTooEarly",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "DisputerAddressCannotBeZero",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "implementation",
+                "type": "address"
+            }
+        ],
+        "name": "ERC1967InvalidImplementation",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ERC1967NonPayable",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "FailedCall",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "InvalidInitialization",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "LivenessCannotBeZero",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "LivenessTooLarge",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "LivenessTooLow",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "MinimumBondAboveMaximumBond",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "NotInitializing",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ProposerAddressCannotBeZero",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ProposerNotWhitelisted",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ReentrancyGuardReentrantCall",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "RequestNotSettleable",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "RequestStateNotInvalid",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "RequestStateNotProposed",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "RequestStateNotRequested",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "RequesterNotWhitelisted",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint8",
+                "name": "bits",
+                "type": "uint8"
+            },
+            {
+                "internalType": "uint256",
+                "name": "value",
+                "type": "uint256"
+            }
+        ],
+        "name": "SafeCastOverflowedUintDowncast",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "token",
+                "type": "address"
+            }
+        ],
+        "name": "SafeERC20FailedOperation",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "SenderNotWhitelisted",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "TimestampInFuture",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "UUPSUnauthorizedCallContext",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "slot",
+                "type": "bytes32"
+            }
+        ],
+        "name": "UUPSUnsupportedProxiableUUID",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "UnsupportedCurrency",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "UnsupportedIdentifier",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "UnsupportedWhitelistInterface",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ZeroBondNotAllowed",
+        "type": "error"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "contract IERC20",
+                "name": "currency",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "newMinimumBond",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "newMaximumBond",
+                "type": "uint256"
+            }
+        ],
+        "name": "AllowedBondRangeUpdated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "managedRequestId",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "indexed": true,
+                "internalType": "contract IERC20",
+                "name": "currency",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "bond",
+                "type": "uint256"
+            }
+        ],
+        "name": "CustomBondSet",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "managedRequestId",
+                "type": "bytes32"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "customLiveness",
+                "type": "uint256"
+            }
+        ],
+        "name": "CustomLivenessSet",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "managedRequestId",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newWhitelist",
+                "type": "address"
+            }
+        ],
+        "name": "CustomProposerWhitelistSet",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [],
+        "name": "DefaultAdminDelayChangeCanceled",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "uint48",
+                "name": "newDelay",
+                "type": "uint48"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint48",
+                "name": "effectSchedule",
+                "type": "uint48"
+            }
+        ],
+        "name": "DefaultAdminDelayChangeScheduled",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [],
+        "name": "DefaultAdminTransferCanceled",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newAdmin",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint48",
+                "name": "acceptSchedule",
+                "type": "uint48"
+            }
+        ],
+        "name": "DefaultAdminTransferScheduled",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newWhitelist",
+                "type": "address"
+            }
+        ],
+        "name": "DefaultProposerWhitelistUpdated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "proposer",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "disputer",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "indexed": false,
+                "internalType": "int256",
+                "name": "proposedPrice",
+                "type": "int256"
+            }
+        ],
+        "name": "DisputePrice",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "uint64",
+                "name": "version",
+                "type": "uint64"
+            }
+        ],
+        "name": "Initialized",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "newMinimumLiveness",
+                "type": "uint256"
+            }
+        ],
+        "name": "MinimumLivenessUpdated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "proposer",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "indexed": false,
+                "internalType": "int256",
+                "name": "proposedPrice",
+                "type": "int256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "expirationTimestamp",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "currency",
+                "type": "address"
+            }
+        ],
+        "name": "ProposePrice",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "requestManager",
+                "type": "address"
+            }
+        ],
+        "name": "RequestManagerAdded",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "requestManager",
+                "type": "address"
+            }
+        ],
+        "name": "RequestManagerRemoved",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "indexed": false,
+                "internalType": "address",
+                "name": "currency",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "reward",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "finalFee",
+                "type": "uint256"
+            }
+        ],
+        "name": "RequestPrice",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "newWhitelist",
+                "type": "address"
+            }
+        ],
+        "name": "RequesterWhitelistUpdated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "role",
+                "type": "bytes32"
+            },
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "previousAdminRole",
+                "type": "bytes32"
+            },
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "newAdminRole",
+                "type": "bytes32"
+            }
+        ],
+        "name": "RoleAdminChanged",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "role",
+                "type": "bytes32"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "sender",
+                "type": "address"
+            }
+        ],
+        "name": "RoleGranted",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "bytes32",
+                "name": "role",
+                "type": "bytes32"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "sender",
+                "type": "address"
+            }
+        ],
+        "name": "RoleRevoked",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "proposer",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "disputer",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "indexed": false,
+                "internalType": "int256",
+                "name": "price",
+                "type": "int256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "payout",
+                "type": "uint256"
+            }
+        ],
+        "name": "Settle",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "implementation",
+                "type": "address"
+            }
+        ],
+        "name": "Upgraded",
+        "type": "event"
+    },
+    {
+        "inputs": [],
+        "name": "CONFIG_ADMIN_ROLE",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "DEFAULT_ADMIN_ROLE",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "OO_ANCILLARY_DATA_LIMIT",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "REQUEST_MANAGER_ROLE",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "TOO_EARLY_RESPONSE",
+        "outputs": [
+            {
+                "internalType": "int256",
+                "name": "",
+                "type": "int256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "UPGRADE_ADMIN_ROLE",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "UPGRADE_INTERFACE_VERSION",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "acceptDefaultAdminTransfer",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requestManager",
+                "type": "address"
+            }
+        ],
+        "name": "addRequestManager",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "contract IERC20",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "allowedBondRanges",
+        "outputs": [
+            {
+                "internalType": "uint128",
+                "name": "minimumBond",
+                "type": "uint128"
+            },
+            {
+                "internalType": "uint128",
+                "name": "maximumBond",
+                "type": "uint128"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "ancillaryBytesLimit",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newAdmin",
+                "type": "address"
+            }
+        ],
+        "name": "beginDefaultAdminTransfer",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "cancelDefaultAdminTransfer",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint48",
+                "name": "newDelay",
+                "type": "uint48"
+            }
+        ],
+        "name": "changeDefaultAdminDelay",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "contract IERC20",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "customBonds",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bool",
+                "name": "isSet",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "name": "customLivenessValues",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "liveness",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bool",
+                "name": "isSet",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "name": "customProposerWhitelists",
+        "outputs": [
+            {
+                "internalType": "contract AddressWhitelistInterface",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "defaultAdmin",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "defaultAdminDelay",
+        "outputs": [
+            {
+                "internalType": "uint48",
+                "name": "",
+                "type": "uint48"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "defaultAdminDelayIncreaseWait",
+        "outputs": [
+            {
+                "internalType": "uint48",
+                "name": "",
+                "type": "uint48"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "defaultLiveness",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "defaultProposerWhitelist",
+        "outputs": [
+            {
+                "internalType": "contract AddressWhitelistInterface",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "disputePrice",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "totalBond",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "disputer",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "disputePriceFor",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "totalBond",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "finder",
+        "outputs": [
+            {
+                "internalType": "contract FinderInterface",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "getCurrentTime",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "getCustomProposerWhitelist",
+        "outputs": [
+            {
+                "internalType": "contract AddressWhitelistInterface",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "getManagedRequestId",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "getProposerWhitelistWithEnabledStatus",
+        "outputs": [
+            {
+                "internalType": "address[]",
+                "name": "allowedProposers",
+                "type": "address[]"
+            },
+            {
+                "internalType": "bool",
+                "name": "isEnabled",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "getRequest",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "address",
+                        "name": "proposer",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "disputer",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "contract IERC20",
+                        "name": "currency",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "settled",
+                        "type": "bool"
+                    },
+                    {
+                        "components": [
+                            {
+                                "internalType": "bool",
+                                "name": "eventBased",
+                                "type": "bool"
+                            },
+                            {
+                                "internalType": "bool",
+                                "name": "refundOnDispute",
+                                "type": "bool"
+                            },
+                            {
+                                "internalType": "bool",
+                                "name": "callbackOnPriceProposed",
+                                "type": "bool"
+                            },
+                            {
+                                "internalType": "bool",
+                                "name": "callbackOnPriceDisputed",
+                                "type": "bool"
+                            },
+                            {
+                                "internalType": "bool",
+                                "name": "callbackOnPriceSettled",
+                                "type": "bool"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "bond",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "customLiveness",
+                                "type": "uint256"
+                            }
+                        ],
+                        "internalType": "struct OptimisticOracleV2Interface.RequestSettings",
+                        "name": "requestSettings",
+                        "type": "tuple"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "proposedPrice",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "int256",
+                        "name": "resolvedPrice",
+                        "type": "int256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "expirationTime",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "reward",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "finalFee",
+                        "type": "uint256"
+                    }
+                ],
+                "internalType": "struct OptimisticOracleV2Interface.Request",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "role",
+                "type": "bytes32"
+            }
+        ],
+        "name": "getRoleAdmin",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "getState",
+        "outputs": [
+            {
+                "internalType": "enum OptimisticOracleV2Interface.State",
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "role",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            }
+        ],
+        "name": "grantRole",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "hasPrice",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "role",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            }
+        ],
+        "name": "hasRole",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_liveness",
+                "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "_finderAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "upgradeAdmin",
+                "type": "address"
+            }
+        ],
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_defaultLiveness",
+                "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "_finderAddress",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_defaultProposerWhitelist",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "_requesterWhitelist",
+                "type": "address"
+            },
+            {
+                "components": [
+                    {
+                        "internalType": "contract IERC20",
+                        "name": "currency",
+                        "type": "address"
+                    },
+                    {
+                        "components": [
+                            {
+                                "internalType": "uint128",
+                                "name": "minimumBond",
+                                "type": "uint128"
+                            },
+                            {
+                                "internalType": "uint128",
+                                "name": "maximumBond",
+                                "type": "uint128"
+                            }
+                        ],
+                        "internalType": "struct ManagedOptimisticOracleV2.BondRange",
+                        "name": "range",
+                        "type": "tuple"
+                    }
+                ],
+                "internalType": "struct ManagedOptimisticOracleV2.CurrencyBondRange[]",
+                "name": "_allowedBondRanges",
+                "type": "tuple[]"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_minimumLiveness",
+                "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "configAdmin",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "upgradeAdmin",
+                "type": "address"
+            }
+        ],
+        "name": "initialize",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "minimumLiveness",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes[]",
+                "name": "data",
+                "type": "bytes[]"
+            }
+        ],
+        "name": "multicall",
+        "outputs": [
+            {
+                "internalType": "bytes[]",
+                "name": "results",
+                "type": "bytes[]"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "pendingDefaultAdmin",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "newAdmin",
+                "type": "address"
+            },
+            {
+                "internalType": "uint48",
+                "name": "schedule",
+                "type": "uint48"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "pendingDefaultAdminDelay",
+        "outputs": [
+            {
+                "internalType": "uint48",
+                "name": "newDelay",
+                "type": "uint48"
+            },
+            {
+                "internalType": "uint48",
+                "name": "schedule",
+                "type": "uint48"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "internalType": "int256",
+                "name": "proposedPrice",
+                "type": "int256"
+            }
+        ],
+        "name": "proposePrice",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "totalBond",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "proposer",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "internalType": "int256",
+                "name": "proposedPrice",
+                "type": "int256"
+            }
+        ],
+        "name": "proposePriceFor",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "totalBond",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "proxiableUUID",
+        "outputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requestManager",
+                "type": "address"
+            }
+        ],
+        "name": "removeRequestManager",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "role",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            }
+        ],
+        "name": "renounceRole",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "internalType": "contract IERC20",
+                "name": "currency",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "bond",
+                "type": "uint256"
+            }
+        ],
+        "name": "requestManagerSetBond",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "internalType": "uint256",
+                "name": "customLiveness",
+                "type": "uint256"
+            }
+        ],
+        "name": "requestManagerSetCustomLiveness",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "internalType": "address",
+                "name": "whitelist",
+                "type": "address"
+            }
+        ],
+        "name": "requestManagerSetProposerWhitelist",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "internalType": "contract IERC20",
+                "name": "currency",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "reward",
+                "type": "uint256"
+            }
+        ],
+        "name": "requestPrice",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "totalBond",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "requesterWhitelist",
+        "outputs": [
+            {
+                "internalType": "contract AddressWhitelistInterface",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "",
+                "type": "bytes32"
+            }
+        ],
+        "name": "requests",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "proposer",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "disputer",
+                "type": "address"
+            },
+            {
+                "internalType": "contract IERC20",
+                "name": "currency",
+                "type": "address"
+            },
+            {
+                "internalType": "bool",
+                "name": "settled",
+                "type": "bool"
+            },
+            {
+                "components": [
+                    {
+                        "internalType": "bool",
+                        "name": "eventBased",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "refundOnDispute",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "callbackOnPriceProposed",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "callbackOnPriceDisputed",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "callbackOnPriceSettled",
+                        "type": "bool"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "bond",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "customLiveness",
+                        "type": "uint256"
+                    }
+                ],
+                "internalType": "struct OptimisticOracleV2Interface.RequestSettings",
+                "name": "requestSettings",
+                "type": "tuple"
+            },
+            {
+                "internalType": "int256",
+                "name": "proposedPrice",
+                "type": "int256"
+            },
+            {
+                "internalType": "int256",
+                "name": "resolvedPrice",
+                "type": "int256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "expirationTime",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "reward",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "finalFee",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "role",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            }
+        ],
+        "name": "revokeRole",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "rollbackDefaultAdminDelay",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "contract IERC20",
+                "name": "currency",
+                "type": "address"
+            },
+            {
+                "components": [
+                    {
+                        "internalType": "uint128",
+                        "name": "minimumBond",
+                        "type": "uint128"
+                    },
+                    {
+                        "internalType": "uint128",
+                        "name": "maximumBond",
+                        "type": "uint128"
+                    }
+                ],
+                "internalType": "struct ManagedOptimisticOracleV2.BondRange",
+                "name": "newRange",
+                "type": "tuple"
+            }
+        ],
+        "name": "setAllowedBondRange",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "internalType": "uint256",
+                "name": "bond",
+                "type": "uint256"
+            }
+        ],
+        "name": "setBond",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "totalBond",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "internalType": "bool",
+                "name": "callbackOnPriceProposed",
+                "type": "bool"
+            },
+            {
+                "internalType": "bool",
+                "name": "callbackOnPriceDisputed",
+                "type": "bool"
+            },
+            {
+                "internalType": "bool",
+                "name": "callbackOnPriceSettled",
+                "type": "bool"
+            }
+        ],
+        "name": "setCallbacks",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "internalType": "uint256",
+                "name": "customLiveness",
+                "type": "uint256"
+            }
+        ],
+        "name": "setCustomLiveness",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "whitelist",
+                "type": "address"
+            }
+        ],
+        "name": "setDefaultProposerWhitelist",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "setEventBased",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_minimumLiveness",
+                "type": "uint256"
+            }
+        ],
+        "name": "setMinimumLiveness",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "setRefundOnDispute",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "whitelist",
+                "type": "address"
+            }
+        ],
+        "name": "setRequesterWhitelist",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "settle",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "payout",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes32",
+                "name": "identifier",
+                "type": "bytes32"
+            },
+            {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            }
+        ],
+        "name": "settleAndGetPrice",
+        "outputs": [
+            {
+                "internalType": "int256",
+                "name": "",
+                "type": "int256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes",
+                "name": "ancillaryData",
+                "type": "bytes"
+            },
+            {
+                "internalType": "address",
+                "name": "requester",
+                "type": "address"
+            }
+        ],
+        "name": "stampAncillaryData",
+        "outputs": [
+            {
+                "internalType": "bytes",
+                "name": "",
+                "type": "bytes"
+            }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes4",
+                "name": "interfaceId",
+                "type": "bytes4"
+            }
+        ],
+        "name": "supportsInterface",
+        "outputs": [
+            {
+                "internalType": "bool",
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "newImplementation",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes",
+                "name": "data",
+                "type": "bytes"
+            }
+        ],
+        "name": "upgradeToAndCall",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    }
+]
