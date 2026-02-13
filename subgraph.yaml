@@ -119,6 +119,35 @@ dataSources:
           handler: handleQuestionResolved
       file: ./src/uma-ctf-adapter.ts
   - kind: ethereum
+    name: NegRiskUmaCtfAdapterV4
+    network: matic
+    source:
+      address: "0x69c47De9D4D3Dad79590d61b9e05918E03775f24"
+      abi: UmaCtfAdapterV4
+      startBlock: 82000000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - MarketResolution
+        - Revision
+      abis:
+        - name: UmaCtfAdapterV4
+          file: ./abis/UmaCtfAdapterV4.json
+      callHandlers:
+        - function: postUpdate(bytes32,bytes)
+          handler: handleAncillaryDataUpdated
+      eventHandlers:
+        - event: QuestionInitialized(indexed bytes32,indexed uint256,indexed
+            address,bytes,address,uint256,uint256)
+          handler: handleQuestionInitialized
+        - event: QuestionReset(indexed bytes32)
+          handler: handleQuestionReset
+        - event: QuestionResolved(indexed bytes32,indexed int256,uint256[])
+          handler: handleQuestionResolved
+      file: ./src/uma-ctf-adapter.ts
+  - kind: ethereum
     name: OptimisticOracleV2
     network: matic
     source:
