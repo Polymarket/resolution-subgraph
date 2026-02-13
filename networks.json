@@ -16,6 +16,10 @@
       "address": "0x2F5e3684cb1F318ec51b00Edba38d79Ac2c0aA9d",
       "startBlock": 50505488
     },
+    "NegRiskUmaCtfAdapterV4": {
+      "address": "0x69c47De9D4D3Dad79590d61b9e05918E03775f24",
+      "startBlock": 82000000
+    },
     "ManagedOptimisticOracleV2": {
       "address": "0x2C0367a9DB231dDeBd88a94b4f6461a6e47C58B1",
       "startBlock": 74677419
