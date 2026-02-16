@@ -36,7 +36,13 @@ export function handleQuestionReset(event: QuestionReset): void {
   log.info("reset question {}", [event.params.questionID.toHexString()]);
   let entity = MarketResolution.load(
     event.params.questionID.toHexString()
-  ) as MarketResolution;
+  );
+  if (entity == null) {
+    log.warning("QuestionReset: no entity found for questionID {}", [
+      event.params.questionID.toHexString(),
+    ]);
+    return;
+  }
 
   if (entity.status == "disputed") {
     // too early after dispute case essentially throw away initial proposal
@@ -52,9 +58,13 @@ export function handleQuestionResolved(event: QuestionResolved): void {
   log.info("resolve question {}", [event.params.questionID.toHexString()]);
   let entity = MarketResolution.load(
     event.params.questionID.toHexString()
-  ) as MarketResolution;
-
-  // TODO: add checks on status?
+  );
+  if (entity == null) {
+    log.warning("QuestionResolved: no entity found for questionID {}", [
+      event.params.questionID.toHexString(),
+    ]);
+    return;
+  }
 
   // mark as resolve and set price
   entity.status = "resolved";
