@@ -144,7 +144,7 @@ function handleClarificationsPostUpdate(call: PostUpdateCall): void {
     !isModerator(call.from.toHexString()) &&
     !(
       call.from.toHexString().toLowerCase() ==
-      "0x91430cad2d3975766499717fa0d66a78d814e5c5"
+      "0xf43d55f3a8b7484ed4b6931f93cb6f9ef5dd369d"
     )
   ) {
     return;
